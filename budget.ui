@@ -3,66 +3,79 @@
  <class>BudgetApp</class>
  <widget class="QWidget" name="BudgetApp">
   <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>300</width>
-    <height>200</height>
-   </rect>
+   <rect><x>0</x><y>0</y><width>300</width><height>500</height></rect>
   </property>
   <property name="windowTitle">
    <string>Budget Tracker</string>
   </property>
 
-  <!-- Budget Input Field -->
+  <!-- Budget Input -->
   <widget class="QLineEdit" name="budgetInput">
-   <property name="geometry">
-    <rect>
-     <x>70</x>
-     <y>20</y>
-     <width>160</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="placeholderText">
-    <string>Set Budget ($)</string>
-   </property>
+   <property name="geometry"><rect><x>70</x><y>20</y><width>160</width><height>30</height></rect></property>
+   <property name="placeholderText"><string>Set Budget ($)</string></property>
   </widget>
 
-  <!-- Budget Display Label -->
+  <!-- Add Budget Button -->
+  <widget class="QPushButton" name="addBudgetButton">
+   <property name="geometry"><rect><x>70</x><y>60</y><width>160</width><height>30</height></rect></property>
+   <property name="text"><string>Add Budget</string></property>
+  </widget>
+
+  <!-- Budget Label -->
   <widget class="QLabel" name="budgetLabel">
-   <property name="geometry">
-    <rect>
-     <x>70</x>
-     <y>60</y>
-     <width>160</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Budget: $0.00</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
+   <property name="geometry"><rect><x>70</x><y>100</y><width>160</width><height>30</height></rect></property>
+   <property name="text"><string>Budget: $0.00</string></property>
+   <property name="alignment"><set>Qt::AlignCenter</set></property>
   </widget>
 
-  <!-- Result Message Label -->
+  <!-- Remaining Label -->
+  <widget class="QLabel" name="remainingLabel">
+   <property name="geometry"><rect><x>70</x><y>140</y><width>160</width><height>30</height></rect></property>
+   <property name="text"><string>Remaining: $0.00</string></property>
+   <property name="alignment"><set>Qt::AlignCenter</set></property>
+  </widget>
+
+  <!-- Category Dropdown -->
+  <widget class="QComboBox" name="categoryDropdown">
+   <property name="geometry"><rect><x>70</x><y>180</y><width>160</width><height>30</height></rect></property>
+   <item><property name="text"><string>Groceries</string></property></item>
+   <item><property name="text"><string>Gas</string></property></item>
+   <item><property name="text"><string>Dining</string></property></item>
+   <item><property name="text"><string>Entertainment</string></property></item>
+   <item><property name="text"><string>Utilities</string></property></item>
+   <item><property name="text"><string>Other</string></property></item>
+  </widget>
+
+  <!-- Amount Input -->
+  <widget class="QLineEdit" name="amountInput">
+   <property name="geometry"><rect><x>70</x><y>220</y><width>160</width><height>30</height></rect></property>
+   <property name="placeholderText"><string>Amount ($)</string></property>
+  </widget>
+
+  <!-- Transaction Type Dropdown -->
+  <widget class="QComboBox" name="transactionTypeDropdown">
+   <property name="geometry"><rect><x>70</x><y>260</y><width>160</width><height>30</height></rect></property>
+   <item><property name="text"><string>Expense</string></property></item>
+   <item><property name="text"><string>Income</string></property></item>
+  </widget>
+
+  <!-- Add Transaction Button -->
+  <widget class="QPushButton" name="addButton">
+   <property name="geometry"><rect><x>70</x><y>300</y><width>160</width><height>40</height></rect></property>
+   <property name="text"><string>Add Transaction</string></property>
+  </widget>
+
+  <!-- Result Label -->
   <widget class="QLabel" name="resultLabel">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>110</y>
-     <width>240</width>
-     <height>40</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
+   <property name="geometry"><rect><x>30</x><y>360</y><width>240</width><height>50</height></rect></property>
+   <property name="text"><string/></property>
+   <property name="alignment"><set>Qt::AlignCenter</set></property>
+  </widget>
+
+  <!-- Exit Button -->
+  <widget class="QPushButton" name="exitButton">
+   <property name="geometry"><rect><x>100</x><y>430</y><width>100</width><height>30</height></rect></property>
+   <property name="text"><string>Exit</string></property>
   </widget>
 
  </widget>
