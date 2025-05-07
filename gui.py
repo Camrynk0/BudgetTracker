@@ -50,7 +50,7 @@ class BudgetApp(QWidget):
             self.resultLabel.setStyleSheet("color: green;")
             self.update_remaining()
         except ValueError:
-            self.resultLabel.setText("Please enter a valid amount (max 2 decimal places).")
+            self.resultLabel.setText("Enter a valid amount (max 2 decimal places).")
             self.resultLabel.setStyleSheet("color: red;")
 
 
