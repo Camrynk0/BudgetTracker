@@ -73,15 +73,16 @@ class BudgetApp(QWidget):
         self.remainingLabel.setText(f"Remaining: ${remaining:.2f}")
 
     def log_transaction(self, trans_type: str, amount: float, category: str):
-        """
-        Save each transaction to a CSV file with type, amount, and category.
-        """
         os.makedirs("data", exist_ok=True)
         filename = "data/transactions.csv"
         file_exists = os.path.isfile(filename)
 
+        # Calculate current remaining total
+        remaining = self.budget + self.total_income - self.total_expenses
+
         with open(filename, mode="a", newline="") as file:
             writer = csv.writer(file)
             if not file_exists:
-                writer.writerow(["Type", "Amount", "Category"])
-            writer.writerow([trans_type, f"{amount:.2f}", category])
+                writer.writerow(["Type", "Amount", "Category", "Remaining"])
+            writer.writerow([trans_type, f"{amount:.2f}", category, f"{remaining:.2f}"])
+

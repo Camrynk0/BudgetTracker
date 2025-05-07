@@ -43,6 +43,7 @@
    <item><property name="text"><string>Dining</string></property></item>
    <item><property name="text"><string>Entertainment</string></property></item>
    <item><property name="text"><string>Utilities</string></property></item>
+   <item><property name="text"><string>Paycheck</string></property></item>
    <item><property name="text"><string>Other</string></property></item>
   </widget>
 
