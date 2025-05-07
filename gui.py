@@ -1,20 +1,34 @@
+"""
+Budget Tracker GUI using PyQt6
+Author: Camryn Klintworth
+Sources:
+- PyQt6 documentation: https://doc.qt.io/qtforpython/
+- Python CSV module: https://docs.python.org/3/library/csv.html
+- Stack Overflow guidance on widget connections and exception handling
+"""
+
 from PyQt6 import uic
 from PyQt6.QtWidgets import QWidget
 import csv
 import os
 
 class BudgetApp(QWidget):
+    """
+    A PyQt6 GUI application for managing a budget by tracking income and expenses.
+    """
+
     def __init__(self):
+        """
+        Initialize the BudgetApp, load the UI, and connect buttons to their handlers.
+        """
         super().__init__()
         uic.loadUi("budget.ui", self)
         self.setFixedSize(self.size())
 
-        # Budget tracking
         self.budget = 0.0
         self.total_expenses = 0.0
         self.total_income = 0.0
 
-        # Button connections
         self.addBudgetButton.clicked.connect(self.set_budget)
         self.addButton.clicked.connect(self.add_transaction)
         self.exitButton.clicked.connect(self.close)
@@ -23,7 +37,8 @@ class BudgetApp(QWidget):
 
     def set_budget(self):
         """
-        Set the budget from the input field and update display.
+        Sets the user's budget based on input from the budgetInput field.
+        Displays an error if the input is not a valid positive number.
         """
         try:
             value = float(self.budgetInput.text().strip())
@@ -40,7 +55,8 @@ class BudgetApp(QWidget):
 
     def add_transaction(self):
         """
-        Add an income or expense and update the remaining budget.
+        Adds a transaction (income or expense) based on user input.
+        Validates amount and updates total income/expenses accordingly.
         """
         amount_text = self.amountInput.text().strip()
         trans_type = self.transactionTypeDropdown.currentText()
@@ -67,17 +83,24 @@ class BudgetApp(QWidget):
 
     def update_remaining(self):
         """
-        Calculate and show remaining budget.
+        Recalculates and displays the remaining budget.
         """
         remaining = self.budget + self.total_income - self.total_expenses
         self.remainingLabel.setText(f"Remaining: ${remaining:.2f}")
 
     def log_transaction(self, trans_type: str, amount: float, category: str):
+        """
+        Logs a transaction to a CSV file including type, amount, category, and current remaining budget.
+        Creates the file if it doesn't exist.
+
+        Args:
+            trans_type (str): 'Income' or 'Expense'
+            amount (float): The transaction amount
+            category (str): The category selected by the user
+        """
         os.makedirs("data", exist_ok=True)
         filename = "data/transactions.csv"
         file_exists = os.path.isfile(filename)
-
-        # Calculate current remaining total
         remaining = self.budget + self.total_income - self.total_expenses
 
         with open(filename, mode="a", newline="") as file:
@@ -85,4 +108,3 @@ class BudgetApp(QWidget):
             if not file_exists:
                 writer.writerow(["Type", "Amount", "Category", "Remaining"])
             writer.writerow([trans_type, f"{amount:.2f}", category, f"{remaining:.2f}"])
-
